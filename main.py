@@ -1,3 +1,5 @@
+import sys
+
 # Import function from stats.py into main.py
 from stats import count_words
 from stats import count_char
@@ -9,11 +11,19 @@ def get_book_text(filepath):
         file_contents = f.read()
     return file_contents
 
-def main():
-    book = get_book_text("books/frankenstein.txt")
+# Check for the correct arguments passed to sys.argv to open path to book file
+if len(sys.argv) == 2:
+    # Assigns the book path argument to the variable filepath
+    filepath = sys.argv[1]
+else:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+def main(filepath):
+    book = get_book_text(filepath)
     words = count_words(book)
     print("=========== BOOKBOT ===========")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {filepath}...")
     print("----------- Word Count -----------")
     print("Found " + str(words) + " total words")
 
@@ -34,4 +44,4 @@ def main():
     for char in char_list:
         print(f"{char['char']}: {char['num']}")
 
-main()
+main(filepath)
