@@ -16,3 +16,6 @@ def count_char(text):
             char_count[lowercase_char] = 1
     return char_count
     
+# Takes the dictionary of characters and returns as a sorted list
+def sort_char(char):
+    return char["num"]
